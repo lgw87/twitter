@@ -7,7 +7,7 @@ export default () => {
   const navigate = useNavigate();
   const onLogOutClick = () => {
         authService.signOut();
-        navigate(`/`);
+        navigate("/");
     }
   return (
     <>

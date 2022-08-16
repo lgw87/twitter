@@ -1,11 +1,11 @@
 import React from "react";
-import { HashRouter as Router , Routes , Route , Navigate } from "react-router-dom";
+import { HashRouter as Router , Routes , Route } from "react-router-dom";
 import Profile from "../routes/Profile";
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Navigation from "./Navigation";
 
-const AppRouter = ({isLoggedIn}) => {
+const AppRouter = ({isLoggedIn , userObj }) => {
     
     return (
         <Router>
@@ -14,7 +14,7 @@ const AppRouter = ({isLoggedIn}) => {
             
             {isLoggedIn ? (
                 <>     
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home userObj={userObj}/>} />
                     <Route path="/profile" element={<Profile />} />
                 </>
             ) : (
