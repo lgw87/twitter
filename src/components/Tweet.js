@@ -1,6 +1,7 @@
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 import React, { useState } from "react";
-import { dbService } from "../fbase";
+import { dbService , storageService } from "../fbase";
 
 const Tweet = ({tweetObj , isOwner} ) => {
     const [editing , setEditing] = useState(false);
@@ -9,6 +10,9 @@ const Tweet = ({tweetObj , isOwner} ) => {
         const ok = window.confirm("정말 삭제 하시겠습니까?");
         if(ok){
             await deleteDoc(doc(dbService, "tweets" , tweetObj.id));
+            if(tweetObj.fileUrl !== ""){
+                await deleteObject(ref(storageService, tweetObj.fileUrl)); 
+            }
         }
     }
     const onUpdateClick = async () => {
@@ -42,6 +46,9 @@ const Tweet = ({tweetObj , isOwner} ) => {
                 ) : (
                 <>
                     <h4>{tweetObj.text}</h4>
+                    {tweetObj.fileUrl && (
+                        <img src={tweetObj.fileUrl} width="50px" height="50px" /> 
+                    )}
                     {isOwner && (
                         <>
                             <button onClick={onDeleteClick}>Delete Tweet</button>
