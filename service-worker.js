@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/twitter/precache-manifest.e08221445830190627e09083fae68d0a.js"
+  "/twitter/precache-manifest.5de0ba80286dfe1cd47f5eea9e4e67dd.js"
 );
 
 workbox.clientsClaim();
