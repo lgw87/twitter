@@ -30,6 +30,13 @@ const Tweet = ({tweetObj , isOwner} ) => {
         await updateDoc(doc(dbService, "tweets", tweetObj.id), { text: newTweet });
         onUpdateClick();
     }
+    const onMouserOver = (event) => {
+        console.log(event);
+        event.target.className="nweet__img2";
+    }
+    const onMouseLeave = (event) => {
+        event.target.className="nweet__img";
+    }
     return (
         <div className="nweet">
             {editing ? (
@@ -51,7 +58,7 @@ const Tweet = ({tweetObj , isOwner} ) => {
                 ) : (
                 <>
                     <h4>{tweetObj.text}</h4>
-                    {tweetObj.fileUrl && <img src={tweetObj.fileUrl} />}
+                    {tweetObj.fileUrl && <img className="nweet__img" src={tweetObj.fileUrl} onMouseOver={onMouserOver} onMouseLeave={onMouseLeave} />}
                     {isOwner && (
                          <div className="nweet__actions">
                             <span onClick={onDeleteClick}><FontAwesomeIcon icon={faTrash} /></span>
